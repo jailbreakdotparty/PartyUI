@@ -433,7 +433,7 @@ public struct WelcomeSheetCell: View {
             Image(systemName: icon)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 35, height: 35, alignment: .center)
+                .frame(width: 30, height: 30, alignment: .center)
                 .foregroundStyle(Color.accentColor)
             VStack(alignment: .leading) {
                 Text(title)
