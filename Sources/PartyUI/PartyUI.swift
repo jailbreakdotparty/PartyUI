@@ -193,7 +193,7 @@ public struct HeaderLabel: View {
                 Text(text)
             } else {
                 Image(systemName: icon)
-                    .frame(alignment: .center)
+                    .frame(width: 20, alignment: .center)
                 Text(text)
             }
         }
@@ -228,7 +228,7 @@ public struct HeaderDropdown: View {
                     Text(text)
                 } else {
                     Image(systemName: icon)
-                        .frame(alignment: .center)
+                        .frame(width: 20, alignment: .center)
                     Text(text)
                 }
                 Spacer()
