@@ -119,10 +119,12 @@ public struct DynamicGlassEffect: ViewModifier {
 
 // MARK: Containers
 public struct TerminalContainer<Content: View>: View {
+    @State private var color: Color = Color(.quaternarySystemFill)
     @ViewBuilder var content: Content
     
-    public init(content: Content) {
+    public init(color: Color = Color(.quaternarySystemFill), content: Content) {
         self.content = content
+        self.color = color
     }
     
     public var body: some View {
@@ -139,7 +141,7 @@ public struct TerminalContainer<Content: View>: View {
             .frame(alignment: .top)
         }
         .frame(height: 250)
-        .modifier(DynamicGlassEffect())
+        .modifier(DynamicGlassEffect(color: color, opacity: 1.0))
     }
 }
 
