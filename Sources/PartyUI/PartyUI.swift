@@ -110,9 +110,15 @@ public struct DynamicGlassEffect: ViewModifier {
         } else {
             let shape: AnyShape = AnyShape(.rect(cornerRadius: 12))
             
-            content
-                .background(color.opacity(opacity))
-                .clipShape(shape)
+            if opacity == 1.0 {
+                content
+                    .background(color)
+                    .clipShape(shape)
+            } else {
+                content
+                    .background(color.opacity(opacity))
+                    .clipShape(shape)
+            }
         }
     }
 }
