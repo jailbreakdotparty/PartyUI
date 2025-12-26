@@ -200,6 +200,62 @@ public struct HeaderLabel: View {
     }
 }
 
+public struct HeaderDropdown: View {
+    var text: String
+    var icon: String
+    @Binding var isExpanded: Bool
+    var useCount: Bool = false
+    var itemCount: Int = 0
+    
+    public init(text: String, icon: String, isExpanded: Binding<Bool>, useCount: Bool = false, itemCount: Int = 0) {
+        self.text = text
+        self.icon = icon
+        self._isExpanded = isExpanded
+        self.useCount = useCount
+        self.itemCount = itemCount
+    }
+    
+    public var body: some View {
+        Button(action: {
+            isExpanded.toggle()
+        }) {
+            HStack {
+                if #available(iOS 26.0, *) {
+                    Image(systemName: icon)
+                        .frame(width: 24, alignment: .center)
+                    Text(text)
+                } else {
+                    Image(systemName: icon)
+                        .frame(alignment: .center)
+                    Text(text)
+                }
+                Spacer()
+                if useCount {
+                    if #available(iOS 26.0, *) {
+                        Text("\(itemCount)")
+                            .frame(minWidth: 14)
+                            .frame(height: 14)
+                            .padding(6)
+                            .background(Color(.secondarySystemBackground))
+                            .clipShape(.capsule)
+                            .glassEffect(.regular, in: .capsule(style: .circular))
+                    } else {
+                        Text("\(itemCount)")
+                            .frame(minWidth: 14)
+                            .frame(height: 14)
+                            .padding(4)
+                            .background(Color(.secondarySystemFill))
+                            .clipShape(.capsule)
+                    }
+                }
+                Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
+                    .frame(width: 24, height: 24, alignment: .center)
+            }
+        }
+        .buttonStyle(.plain)
+    }
+}
+
 public struct ButtonLabel: View {
     var text: String
     var icon: String
@@ -478,3 +534,4 @@ public struct WelcomeSheet<CellContent: View, ButtonContent: View>: View {
         .padding(.bottom, 20)
     }
 }
+
