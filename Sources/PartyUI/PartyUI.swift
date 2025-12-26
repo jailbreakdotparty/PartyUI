@@ -85,7 +85,7 @@ public struct DynamicGlassEffect: ViewModifier {
     var useBackground: Bool = true
     var opacity: CGFloat = 0.2
     
-    public init(color: Color = Color(.quaternaryLabel), shape: AnyShape = AnyShape(.rect(cornerRadius: 18)), useFullWidth: Bool = true, glassEffect: Bool = true, isInteractive: Bool = true, useBackground: Bool = true, opacity: CGFloat = 0.2) {
+    public init(color: Color = Color(.quaternarySystemFill), shape: AnyShape = AnyShape(.rect(cornerRadius: 18)), useFullWidth: Bool = true, glassEffect: Bool = true, isInteractive: Bool = true, useBackground: Bool = true, opacity: CGFloat = 0.2) {
         self.color = color
         self.shape = shape
         self.useFullWidth = useFullWidth
@@ -110,15 +110,9 @@ public struct DynamicGlassEffect: ViewModifier {
         } else {
             let shape: AnyShape = AnyShape(.rect(cornerRadius: 12))
             
-            if opacity == 1.0 {
-                content
-                    .background(color)
-                    .clipShape(shape)
-            } else {
-                content
-                    .background(color.opacity(opacity))
-                    .clipShape(shape)
-            }
+            content
+                .background(color.opacity(opacity))
+                .clipShape(shape)
         }
     }
 }
@@ -393,7 +387,7 @@ public struct GlassyTextFieldStyle: TextFieldStyle {
     var isInteractive: Bool = true
     var opacity: CGFloat = 0.2
     
-    public init(isDisabled: Bool = false, color: Color = Color(.quaternaryLabel), cornerRadius: CGFloat = 18, capsuleField: Bool = false, isInteractive: Bool = true, opacity: CGFloat = 0.2) {
+    public init(isDisabled: Bool = false, color: Color = Color(.quaternarySystemFill), cornerRadius: CGFloat = 18, capsuleField: Bool = false, isInteractive: Bool = true, opacity: CGFloat = 0.2) {
         self.isDisabled = isDisabled
         self.color = color
         self.cornerRadius = cornerRadius
