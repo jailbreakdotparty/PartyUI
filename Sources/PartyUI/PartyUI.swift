@@ -210,13 +210,17 @@ public struct HeaderDropdown: View {
     @Binding var isExpanded: Bool
     var useCount: Bool = false
     var itemCount: Int = 0
+    @State private var oldItemCount: Int
+    @AppStorage var isExpandedStorage: Bool
     
-    public init(text: String, icon: String, isExpanded: Binding<Bool>, useCount: Bool = false, itemCount: Int = 0) {
+    public init(text: String, icon: String, isExpanded: Binding<Bool>, useCount: Bool = false, itemCount: Int = 0, oldItemCount: Int) {
         self.text = text
         self.icon = icon
         self._isExpanded = isExpanded
         self.useCount = useCount
         self.itemCount = itemCount
+        self.oldItemCount = oldItemCount
+        self._isExpandedStorage = AppStorage(wrappedValue: true, "sectionExpanded_\(text)")
     }
     
     public var body: some View {
@@ -259,6 +263,24 @@ public struct HeaderDropdown: View {
             }
         }
         .buttonStyle(.plain)
+        .onAppear {
+            if itemCount == 0 {
+                isExpanded = false
+            }
+            oldItemCount = itemCount
+            isExpanded = isExpandedStorage
+        }
+        .onChange(of: itemCount) { newValue in
+            if newValue == 0 {
+                isExpanded = false
+            } else if oldItemCount == 0 && newValue == 1 {
+                isExpanded = true
+            }
+            oldItemCount = newValue
+        }
+        .onChange(of: isExpanded) { newValue in
+            isExpandedStorage = newValue
+        }
     }
 }
 
