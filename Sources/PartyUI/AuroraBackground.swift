@@ -6,20 +6,19 @@
 import SwiftUI
 import Combine
 
-// .frame(maxWidth: .infinity, maxHeight: .infinity)
-// .ignoresSafeArea()
-
 public struct AuroraBackground: View {
     var color1: String = "90D08E"
     var color2: String = "37C2A7"
     var color3: String = "3ACD95"
     var color4: String = "65D4C6"
+    var background: String = "40ABAF"
     
-    public init(color1: String = "90D08E", color2: String = "37C2A7", color3: String = "3ACD95", color4: String = "65D4C6") {
+    public init(color1: String = "90D08E", color2: String = "37C2A7", color3: String = "3ACD95", color4: String = "65D4C6", background: String = "40ABAF") {
         self.color1 = color1
         self.color2 = color2
         self.color3 = color3
         self.color4 = color4
+        self.background = background
     }
     
     public var body: some View {
@@ -33,7 +32,7 @@ public struct AuroraBackground: View {
                 }
                 .blur(radius: 60)
             }
-            .background(Color(hex: "40ABAF"))
+            .background(Color(hex: background))
             .ignoresSafeArea()
         }
     }
