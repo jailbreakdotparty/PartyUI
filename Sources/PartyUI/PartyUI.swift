@@ -247,7 +247,7 @@ public struct HeaderDropdown: View {
                             .padding(6)
                             .clipShape(.capsule)
                             .glassEffect(.regular, in: .capsule(style: .circular))
-                            .font(.callout)
+                            .font(.system(.callout, weight: .semibold))
                     } else {
                         Text("\(itemCount)")
                             .frame(minWidth: 14)
@@ -255,7 +255,7 @@ public struct HeaderDropdown: View {
                             .padding(4)
                             .background(Color(.quaternarySystemFill))
                             .clipShape(.capsule)
-                            .font(.callout)
+                            .font(.system(.callout, weight: .semibold))
                     }
                 }
                 Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
