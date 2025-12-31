@@ -6,15 +6,22 @@
 import SwiftUI
 import Combine
 
-public struct AuroraBackground: View {
-    public var body: some View {
-        FloatingRays()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .ignoresSafeArea()
-    }
-}
+// .frame(maxWidth: .infinity, maxHeight: .infinity)
+// .ignoresSafeArea()
 
-public struct FloatingRays: View {
+public struct AuroraBackground: View {
+    var color1: String = "90D08E"
+    var color2: String = "37C2A7"
+    var color3: String = "3ACD95"
+    var color4: String = "65D4C6"
+    
+    init(color1: String = "90D08E", color2: String = "37C2A7", color3: String = "3ACD95", color4: String = "65D4C6") {
+        self.color1 = color1
+        self.color2 = color2
+        self.color3 = color3
+        self.color4 = color4
+    }
+    
     public var body: some View {
         GeometryReader { raysFrameMonitor in
             ZStack {
