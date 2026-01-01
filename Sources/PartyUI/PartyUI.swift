@@ -77,7 +77,7 @@ public struct ImageRenderingView: View {
 
 // MARK: Effects
 public struct DynamicGlassEffect: ViewModifier {
-    var color: Color = Color(.quaternarySystemFill)
+    var color: Color = Color(.secondarySystemBackground)
     var shape: AnyShape = AnyShape(.rect(cornerRadius: conditionalCornerRadius()))
     var useFullWidth: Bool = true
     var glassEffect: Bool = true
@@ -85,7 +85,7 @@ public struct DynamicGlassEffect: ViewModifier {
     var useBackground: Bool = true
     var opacity: CGFloat = 1.0
     
-    public init(color: Color = Color(.quaternarySystemFill), shape: AnyShape = AnyShape(.rect(cornerRadius: conditionalCornerRadius())), useFullWidth: Bool = true, glassEffect: Bool = true, isInteractive: Bool = true, useBackground: Bool = true, opacity: CGFloat = 1.0) {
+    public init(color: Color = Color(.secondarySystemBackground), shape: AnyShape = AnyShape(.rect(cornerRadius: conditionalCornerRadius())), useFullWidth: Bool = true, glassEffect: Bool = true, isInteractive: Bool = true, useBackground: Bool = true, opacity: CGFloat = 1.0) {
         self.color = color
         self.shape = shape
         self.useFullWidth = useFullWidth
@@ -117,10 +117,10 @@ public struct DynamicGlassEffect: ViewModifier {
 
 // MARK: Containers
 public struct TerminalContainer<Content: View>: View {
-    @State private var color: Color = Color(.quaternarySystemFill)
+    @State private var color: Color = Color(.secondarySystemFill)
     @ViewBuilder var content: Content
     
-    public init(color: Color = Color(.quaternarySystemFill), content: Content) {
+    public init(color: Color = Color(.secondarySystemBackground), content: Content) {
         self.content = content
         self.color = color
     }
@@ -405,13 +405,13 @@ public struct GlassyButtonStyle: ButtonStyle {
 
 public struct GlassyTextFieldStyle: TextFieldStyle {
     var isDisabled: Bool = false
-    var color: Color = Color(.quaternarySystemFill)
+    var color: Color = Color(.secondarySystemBackground)
     var cornerRadius: CGFloat = conditionalCornerRadius()
     var capsuleField: Bool = false
     var isInteractive: Bool = true
     var opacity: CGFloat = 1.0
     
-    public init(isDisabled: Bool = false, color: Color = Color(.quaternarySystemFill), cornerRadius: CGFloat = conditionalCornerRadius(), capsuleField: Bool = false, isInteractive: Bool = true, opacity: CGFloat = 1.0) {
+    public init(isDisabled: Bool = false, color: Color = Color(.secondarySystemBackground), cornerRadius: CGFloat = conditionalCornerRadius(), capsuleField: Bool = false, isInteractive: Bool = true, opacity: CGFloat = 1.0) {
         self.isDisabled = isDisabled
         self.color = color
         self.cornerRadius = cornerRadius
