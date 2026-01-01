@@ -76,48 +76,15 @@ public struct ImageRenderingView: View {
 }
 
 // MARK: Effects
-public struct DynamicGlassEffect<Background: View>: ViewModifier {
+public struct DynamicGlassEffect: ViewModifier {
     var color: Color = Color(.secondarySystemBackground)
     var shape: AnyShape = AnyShape(.rect(cornerRadius: conditionalCornerRadius()))
     var useFullWidth: Bool = true
     var glassEffect: Bool = true
     var isInteractive: Bool = true
-    var opacity: CGFloat = 1.0
     var useBackground: Bool = true
-    @ViewBuilder var background: Background = Color(.secondarySystemBackground) as! Background
-    
-    public init(color: Color = Color(.secondarySystemBackground), shape: AnyShape = AnyShape(.rect(cornerRadius: conditionalCornerRadius())), useFullWidth: Bool = true, glassEffect: Bool = true, isInteractive: Bool = true, useBackground: Bool = true, opacity: CGFloat = 1.0, background: Background = Color(.secondarySystemBackground) as! Background) {
-        self.color = color
-        self.shape = shape
-        self.useFullWidth = useFullWidth
-        self.glassEffect = glassEffect
-        self.isInteractive = isInteractive
-        self.useBackground = useBackground
-        self.opacity = opacity
-        self.background = background
-    }
-    
-    public func body(content: Content) -> some View {
-        if #available(iOS 26.0, *) {
-            if glassEffect {
-                content
-                    .background(useBackground ? background.opacity(opacity) : .clear)
-                    .clipShape(shape)
-                    .glassEffect(isInteractive ? .regular.interactive() : .regular, in: shape)
-            } else {
-                content
-                    .background(useBackground ? background.opacity(opacity) : .clear)
-                    .clipShape(shape)
-            }
-        } else {
-            content
-                .background(background.opacity(opacity))
-                .clipShape(shape)
-        }
-    }
-}
+    var opacity: CGFloat = 1.0
 
-extension DynamicGlassEffect where Background == Color {
     public init(color: Color = Color(.secondarySystemBackground), shape: AnyShape = AnyShape(.rect(cornerRadius: conditionalCornerRadius())), useFullWidth: Bool = true, glassEffect: Bool = true, isInteractive: Bool = true, useBackground: Bool = true, opacity: CGFloat = 1.0) {
         self.color = color
         self.shape = shape
@@ -126,7 +93,25 @@ extension DynamicGlassEffect where Background == Color {
         self.isInteractive = isInteractive
         self.useBackground = useBackground
         self.opacity = opacity
-        self.background = color
+    }
+
+    public func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) {
+            if glassEffect {
+                content
+                    .background(useBackground ? color.opacity(opacity) : .clear)
+                    .clipShape(shape)
+                    .glassEffect(isInteractive ? .regular.interactive() : .regular, in: shape)
+            } else {
+                content
+                    .background(useBackground ? color.opacity(opacity) : .clear)
+                    .clipShape(shape)
+            }
+        } else {
+            content
+                .background(color.opacity(opacity))
+                .clipShape(shape)
+        }
     }
 }
 
