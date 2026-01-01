@@ -147,11 +147,13 @@ public struct OverlayButtonContainer<Content: View>: View {
     @ViewBuilder var content: Content
     @State private var keyboardShown: Bool = false
     var blurRadius: CGFloat = 8
+    var useDimming: Bool = true
     
-    public init(content: Content, keyboardShown: Bool = false, blurRadius: CGFloat = 8) {
+    public init(content: Content, keyboardShown: Bool = false, blurRadius: CGFloat = 8, useDimming: Bool = true) {
         self.content = content
         self.keyboardShown = keyboardShown
         self.blurRadius = blurRadius
+        self.useDimming = useDimming
     }
     
     public var body: some View {
@@ -164,9 +166,11 @@ public struct OverlayButtonContainer<Content: View>: View {
         .background {
             ZStack {
                 VariableBlurView(maxBlurRadius: blurRadius, direction: .blurredBottomClearTop)
-                Rectangle()
-                    .fill(Gradient(colors: [.clear, Color(.systemBackground)]))
-                    .opacity(0.8)
+                if useDimming {
+                    Rectangle()
+                        .fill(Gradient(colors: [.clear, Color(.systemBackground)]))
+                        .opacity(0.8)
+                }
             }
             .ignoresSafeArea()
         }
