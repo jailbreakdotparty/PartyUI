@@ -460,19 +460,17 @@ public struct GlassyButtonStyle: ButtonStyle {
 
 public struct GlassyTextFieldStyle: TextFieldStyle {
     var isDisabled: Bool = false
-    var color: Color = Color(.secondarySystemBackground)
+    var color: Color = .primary
     var cornerRadius: CGFloat = conditionalCornerRadius()
     var capsuleField: Bool = false
     var isInteractive: Bool = true
-    var opacity: CGFloat = 1.0
     
-    public init(isDisabled: Bool = false, color: Color = Color(.secondarySystemBackground), cornerRadius: CGFloat = conditionalCornerRadius(), capsuleField: Bool = false, isInteractive: Bool = true, opacity: CGFloat = 1.0) {
+    public init(isDisabled: Bool = false, color: Color = Color(.secondarySystemBackground), cornerRadius: CGFloat = conditionalCornerRadius(), capsuleField: Bool = false, isInteractive: Bool = true) {
         self.isDisabled = isDisabled
         self.color = color
         self.cornerRadius = cornerRadius
         self.capsuleField = capsuleField
         self.isInteractive = isInteractive
-        self.opacity = opacity
     }
     
     public func _body(configuration: TextField<Self._Label>) -> some View {
@@ -488,7 +486,7 @@ public struct GlassyTextFieldStyle: TextFieldStyle {
                 .frame(maxWidth: .infinity)
                 .foregroundStyle(fontColor)
                 .padding()
-                .background(color.opacity(opacity))
+                .background(color.opacity(0.2))
                 .clipShape(shape)
                 .glassEffect(isInteractive ? .regular.interactive() : .regular, in: shape)
                 .allowsHitTesting(!isDisabled)
@@ -500,7 +498,7 @@ public struct GlassyTextFieldStyle: TextFieldStyle {
                 .frame(maxWidth: .infinity)
                 .foregroundStyle(fontColor)
                 .padding()
-                .background(color.opacity(opacity))
+                .background(color.opacity(0.2))
                 .clipShape(shape)
                 .allowsHitTesting(!isDisabled)
         }
