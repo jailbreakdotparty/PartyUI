@@ -202,7 +202,7 @@ public struct HeaderLabel: View {
                 }
                 .opacity(useHeaderStyling ? 0.6 : 1.0)
                 .fontWeight(useHeaderStyling ? .medium : .regular)
-                .padding(useHeaderStyling ? .top : .all, 0)
+                .padding(.top, useHeaderStyling ? 10 : 0)
             } else {
                 HStack {
                     Image(systemName: icon)
@@ -211,7 +211,7 @@ public struct HeaderLabel: View {
                 }
                 .opacity(useHeaderStyling ? 0.6 : 1.0)
                 .fontWeight(useHeaderStyling ? .medium : .regular)
-                .padding(useHeaderStyling ? .top : .all, 0)
+                .padding(.top, useHeaderStyling ? 10 : 0)
             }
         }
     }
@@ -287,8 +287,8 @@ public struct HeaderDropdown: View {
                     .frame(width: 24, height: 24, alignment: .center)
                     .opacity(useHeaderStyling ? 0.6 : 1.0)
             }
-            .padding(useHeaderStyling ? .top : .all, 0)
         }
+        .padding(.top, useHeaderStyling ? 10 : 0)
         .buttonStyle(.plain)
         .onAppear {
             if itemCount == 0 {
@@ -536,3 +536,4 @@ public struct GlassyListRowBackground: ViewModifier {
         }
     }
 }
+
