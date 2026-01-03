@@ -397,15 +397,17 @@ public struct GlassyButtonStyle: ButtonStyle {
     var cornerRadius: CGFloat = conditionalCornerRadius()
     var capsuleButton: Bool = false
     var isInteractive: Bool = true
+    var width: CGFloat? = nil
     var isMaterialButton: Bool = false
     
-    public init(isDisabled: Bool = false, color: Color = .accentColor, useFullWidth: Bool = true, cornerRadius: CGFloat = conditionalCornerRadius(), capsuleButton: Bool = false, isInteractive: Bool = true, isMaterialButton: Bool = false) {
+    public init(isDisabled: Bool = false, color: Color = .accentColor, useFullWidth: Bool = true, cornerRadius: CGFloat = conditionalCornerRadius(), capsuleButton: Bool = false, isInteractive: Bool = true, width: CGFloat? = nil, isMaterialButton: Bool = false) {
         self.isDisabled = isDisabled
         self.color = color
         self.useFullWidth = useFullWidth
         self.cornerRadius = cornerRadius
         self.capsuleButton = capsuleButton
         self.isInteractive = isInteractive
+        self.width = width
         self.isMaterialButton = isMaterialButton
     }
     
@@ -421,6 +423,7 @@ public struct GlassyButtonStyle: ButtonStyle {
                 .frame(maxWidth: useFullWidth ? .infinity : nil)
                 .foregroundStyle(color)
                 .padding()
+                .frame(width: width)
                 .background(color.opacity(0.2))
                 .clipShape(shape)
                 .glassEffect(isInteractive ? .regular.interactive() : .regular, in: shape)
@@ -433,6 +436,7 @@ public struct GlassyButtonStyle: ButtonStyle {
                 .frame(maxWidth: useFullWidth ? .infinity : nil)
                 .foregroundStyle(color)
                 .padding()
+                .frame(width: width)
                 .background(color.opacity(0.2))
                 .background {
                     if isMaterialButton {
