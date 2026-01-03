@@ -70,7 +70,7 @@ public struct ImageRenderingView: View {
                 }
             }
             .frame(width: width, height: height)
-            .background(useBackground ? Color(.secondarySystemBackground) : Color.clear)
+            .background(useBackground ? Color(.quaternarySystemFill) : Color.clear)
             .clipShape(shape)
         }
     }
@@ -78,7 +78,7 @@ public struct ImageRenderingView: View {
 
 // MARK: Effects
 public struct DynamicGlassEffect: ViewModifier {
-    var color: Color = Color(.secondarySystemBackground)
+    var color: Color = Color(.quaternarySystemFill)
     var shape: AnyShape = AnyShape(.rect(cornerRadius: conditionalCornerRadius()))
     var useFullWidth: Bool = true
     var glassEffect: Bool = true
@@ -86,7 +86,7 @@ public struct DynamicGlassEffect: ViewModifier {
     var useBackground: Bool = true
     var opacity: CGFloat = 1.0
 
-    public init(color: Color = Color(.secondarySystemBackground), shape: AnyShape = AnyShape(.rect(cornerRadius: conditionalCornerRadius())), useFullWidth: Bool = true, glassEffect: Bool = true, isInteractive: Bool = true, useBackground: Bool = true, opacity: CGFloat = 1.0) {
+    public init(color: Color = Color(.quaternarySystemFill), shape: AnyShape = AnyShape(.rect(cornerRadius: conditionalCornerRadius())), useFullWidth: Bool = true, glassEffect: Bool = true, isInteractive: Bool = true, useBackground: Bool = true, opacity: CGFloat = 1.0) {
         self.color = color
         self.shape = shape
         self.useFullWidth = useFullWidth
@@ -113,34 +113,6 @@ public struct DynamicGlassEffect: ViewModifier {
                 .background(color.opacity(opacity))
                 .clipShape(shape)
         }
-    }
-}
-
-// MARK: Containers
-public struct TerminalContainer<Content: View>: View {
-    @State private var color: Color = Color(.quaternarySystemFill)
-    @ViewBuilder var content: Content
-
-    public init(color: Color = Color(.quaternarySystemFill), content: Content) {
-        self.content = content
-        self.color = color
-    }
-
-    public var body: some View {
-        ZStack(alignment: .top) {
-            content
-                .padding(.horizontal)
-            VStack {
-                VariableBlurView(maxBlurRadius: 1, direction: .blurredTopClearBottom)
-                    .frame(maxHeight: 20)
-                Spacer()
-                VariableBlurView(maxBlurRadius: 1, direction: .blurredBottomClearTop)
-                    .frame(maxHeight: 20)
-            }
-            .frame(alignment: .top)
-        }
-        .frame(height: 250)
-        .modifier(DynamicGlassEffect(color: color, opacity: 1.0))
     }
 }
 
@@ -180,47 +152,33 @@ public struct OverlayBackground: ViewModifier {
     }
 }
 
-/*
-public struct OverlayButtonContainer<Content: View>: View {
+// MARK: Containers
+public struct TerminalContainer<Content: View>: View {
+    @State private var color: Color = Color(.quaternarySystemFill)
     @ViewBuilder var content: Content
-    @State private var keyboardShown: Bool = false
-    var blurRadius: CGFloat = 8
-    var useDimming: Bool = true
-    
-    public init(content: Content, keyboardShown: Bool = false, blurRadius: CGFloat = 8, useDimming: Bool = true) {
+
+    public init(color: Color = Color(.quaternarySystemFill), content: Content) {
         self.content = content
-        self.keyboardShown = keyboardShown
-        self.blurRadius = blurRadius
-        self.useDimming = useDimming
+        self.color = color
     }
-    
+
     public var body: some View {
-        VStack {
+        ZStack(alignment: .top) {
             content
-        }
-        .padding(.horizontal, 25)
-        .padding(.top, 30)
-        .padding(.bottom, keyboardShown ? 20 : 0)
-        .background {
-            ZStack {
-                VariableBlurView(maxBlurRadius: blurRadius, direction: .blurredBottomClearTop)
-                if useDimming {
-                    Rectangle()
-                        .fill(Gradient(colors: [.clear, Color(.systemBackground)]))
-                        .opacity(0.8)
-                }
+                .padding(.horizontal)
+            VStack {
+                VariableBlurView(maxBlurRadius: 1, direction: .blurredTopClearBottom)
+                    .frame(maxHeight: 20)
+                Spacer()
+                VariableBlurView(maxBlurRadius: 1, direction: .blurredBottomClearTop)
+                    .frame(maxHeight: 20)
             }
-            .ignoresSafeArea()
+            .frame(alignment: .top)
         }
-        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
-            keyboardShown = true
-        }
-        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
-            keyboardShown = false
-        }
+        .frame(height: 250)
+        .modifier(DynamicGlassEffect(color: color, opacity: 1.0))
     }
 }
-*/
 
 // MARK: Headers, labels, and other views
 public struct HeaderLabel: View {
@@ -386,7 +344,7 @@ public struct LinkCreditCell: View {
                     if #available(iOS 26.0, *) {
                         ImageRenderingView(imageName: image, capsuleImage: true, useBackground: true)
                     } else {
-                        ImageRenderingView(imageName: image, cornerRadius: 12, useBackground: true)
+                        ImageRenderingView(imageName: image, cornerRadius: 8, useBackground: true)
                     }
                 }
                 VStack(alignment: .leading) {
@@ -404,6 +362,30 @@ public struct LinkCreditCell: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .foregroundStyle(.primary)
+    }
+}
+
+public struct AppInfoCell: View {
+    var imageName: String
+    var title: String
+    var subtitle: String
+    
+    public init(imageName: String, title: String, subtitle: String) {
+        self.imageName = imageName
+        self.title = title
+        self.subtitle = subtitle
+    }
+    
+    public var body: some View {
+        HStack(spacing: 14) {
+            ImageRenderingView(imageName: imageName, cornerRadius: conditionalCornerRadius(), width: 60, height: 60, useBackground: true)
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.system(.title3, weight: .medium))
+                Text(subtitle)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 }
 
@@ -465,12 +447,12 @@ public struct GlassyButtonStyle: ButtonStyle {
 
 public struct GlassyTextFieldStyle: TextFieldStyle {
     var isDisabled: Bool = false
-    var color: Color = .primary
+    var color: Color = Color(.quaternarySystemFill)
     var cornerRadius: CGFloat = conditionalCornerRadius()
     var capsuleField: Bool = false
     var isInteractive: Bool = true
     
-    public init(isDisabled: Bool = false, color: Color = Color(.secondarySystemBackground), cornerRadius: CGFloat = conditionalCornerRadius(), capsuleField: Bool = false, isInteractive: Bool = true) {
+    public init(isDisabled: Bool = false, color: Color = Color(.quaternarySystemFill), cornerRadius: CGFloat = conditionalCornerRadius(), capsuleField: Bool = false, isInteractive: Bool = true) {
         self.isDisabled = isDisabled
         self.color = color
         self.cornerRadius = cornerRadius
@@ -479,7 +461,7 @@ public struct GlassyTextFieldStyle: TextFieldStyle {
     }
     
     public func _body(configuration: TextField<Self._Label>) -> some View {
-        let color: Color = isDisabled ? .gray : color
+        let color: Color = isDisabled ? Color(.systemGray5) : color
         let fontColor: Color = isDisabled ? .gray : .primary
         
         if #available(iOS 26.0, *) {
@@ -491,9 +473,8 @@ public struct GlassyTextFieldStyle: TextFieldStyle {
                 .frame(maxWidth: .infinity)
                 .foregroundStyle(fontColor)
                 .padding()
-                .background(color.opacity(0.2))
                 .clipShape(shape)
-                .glassEffect(isInteractive ? .regular.interactive() : .regular, in: shape)
+                .modifier(DynamicGlassEffect(color: color, isInteractive: isInteractive))
                 .allowsHitTesting(!isDisabled)
         } else {
             let shape: AnyShape = capsuleField ? AnyShape(.capsule) : AnyShape(.rect(cornerRadius: cornerRadius))
@@ -503,8 +484,8 @@ public struct GlassyTextFieldStyle: TextFieldStyle {
                 .frame(maxWidth: .infinity)
                 .foregroundStyle(fontColor)
                 .padding()
-                .background(color.opacity(0.2))
                 .clipShape(shape)
+                .modifier(DynamicGlassEffect(color: color))
                 .allowsHitTesting(!isDisabled)
         }
     }
