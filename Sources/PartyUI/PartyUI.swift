@@ -382,7 +382,11 @@ public struct LinkCreditCell: View {
         }) {
             HStack(spacing: 12) {
                 if !image.isEmpty {
-                    ImageRenderingView(imageName: image, capsuleImage: true)
+                    if #available(iOS 26.0, *) {
+                        ImageRenderingView(imageName: image, capsuleImage: true, useBackground: true)
+                    } else {
+                        ImageRenderingView(imageName: image, cornerRadius: 18, useBackground: true)
+                    }
                 }
                 VStack(alignment: .leading) {
                     Text(name)
