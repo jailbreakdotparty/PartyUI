@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-public struct ToolbarButtonStyle: ButtonStyle {
+public struct SolariumButtonTint: ViewModifier {
     public init() {}
     
-    public func makeBody(configuration: Configuration) -> some View {
+    public func body(content: Content) -> some View {
         if #available(iOS 19.0, *) {
-            configuration.label
+            content
                 .tint(Color(.label))
         } else {
-            configuration.label
+            content
         }
     }
 }

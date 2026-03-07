@@ -35,6 +35,9 @@ public struct PrimaryButtonStyle: PrimitiveButtonStyle {
                 .frame(maxWidth: useFullWidth ? .infinity : nil)
                 .glassEffect(.regular.interactive().tint(isEnabled ? color : Color(.systemGray5)), in: shape)
                 .contentShape(shape)
+                .simultaneousGesture(TapGesture().onEnded{
+                    configuration.trigger()
+                })
         } else {
             configuration.label
                 .buttonStyle(.plain)
