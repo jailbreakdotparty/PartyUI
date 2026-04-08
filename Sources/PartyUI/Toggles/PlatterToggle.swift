@@ -17,16 +17,18 @@ public struct PlatterToggle: View {
     var infoType: ToggleInfoType
     var infoTitle: String
     var infoMessage: String
+    var backgroundColor: Color
     var minSupportedVersion: Double
     var maxSupportedVersion: Double
     @Binding var isOn: Bool
     
-    public init(icon: String = "", label: String, infoType: ToggleInfoType = .none, infoTitle: String = "Information", infoMessage: String = "", minSupportedVersion: Double = 0.0, maxSupportedVersion: Double = 100.0, isOn: Binding<Bool>) {
+    public init(icon: String = "", label: String, infoType: ToggleInfoType = .none, infoTitle: String = "Information", infoMessage: String = "", backgroundColor: Color = Color.accentColor, minSupportedVersion: Double = 0.0, maxSupportedVersion: Double = 100.0, isOn: Binding<Bool>) {
         self.icon = icon
         self.label = label
         self.infoType = infoType
         self.infoTitle = infoTitle
         self.infoMessage = infoMessage
+        self.backgroundColor = backgroundColor
         self._isOn = isOn
         self.minSupportedVersion = minSupportedVersion
         self.maxSupportedVersion = maxSupportedVersion
@@ -45,7 +47,6 @@ public struct PlatterToggle: View {
                     HStack(spacing: 12) {
                         if infoType == .info || infoType == .warning {
                             Button(action: {
-                                Haptic.shared.play(.soft)
                                 Alertinator.shared.alert(title: infoTitle, body: infoMessage, showCancel: false, action: { Haptic.shared.play(.soft) })
                             }) {
                                 Image(systemName: infoType == .info ? "info.circle" : "exclamationmark.triangle")
@@ -54,7 +55,7 @@ public struct PlatterToggle: View {
                         CheckmarkIcon(isOn: $isOn)
                     }
                 }
-                .modifier(ListTogglePlatter())
+                .modifier(ListTogglePlatter(backgroundColor: backgroundColor))
             }
             .buttonStyle(.plain)
         }

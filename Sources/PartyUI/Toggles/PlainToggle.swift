@@ -40,7 +40,6 @@ public struct PlainToggle: View {
                     Spacer()
                     if infoType == .info || infoType == .warning {
                         Button(action: {
-                            Haptic.shared.play(.soft)
                             Alertinator.shared.alert(title: infoTitle, body: infoMessage, showCancel: false, action: { Haptic.shared.play(.soft) })
                         }) {
                             Image(systemName: infoType == .info ? "info.circle" : "exclamationmark.triangle")
