@@ -14,21 +14,21 @@ public enum ToggleInfoType: Codable {
 public struct PlatterToggle: View {
     var icon: String
     var label: String
+    var color: Color
     var infoType: ToggleInfoType
     var infoTitle: String
     var infoMessage: String
-    var backgroundColor: Color
     var minSupportedVersion: Double
     var maxSupportedVersion: Double
     @Binding var isOn: Bool
     
-    public init(icon: String = "", label: String, infoType: ToggleInfoType = .none, infoTitle: String = "Information", infoMessage: String = "", backgroundColor: Color = Color.accentColor, minSupportedVersion: Double = 0.0, maxSupportedVersion: Double = 100.0, isOn: Binding<Bool>) {
+    public init(icon: String = "", label: String, color: Color = Color.accentColor, infoType: ToggleInfoType = .none, infoTitle: String = "Information", infoMessage: String = "", minSupportedVersion: Double = 0.0, maxSupportedVersion: Double = 100.0, isOn: Binding<Bool>) {
         self.icon = icon
         self.label = label
+        self.color = color
         self.infoType = infoType
         self.infoTitle = infoTitle
         self.infoMessage = infoMessage
-        self.backgroundColor = backgroundColor
         self._isOn = isOn
         self.minSupportedVersion = minSupportedVersion
         self.maxSupportedVersion = maxSupportedVersion
@@ -55,7 +55,8 @@ public struct PlatterToggle: View {
                         CheckmarkIcon(isOn: $isOn)
                     }
                 }
-                .modifier(ListTogglePlatter(backgroundColor: backgroundColor))
+                .foregroundStyle(color)
+                .modifier(ListTogglePlatter(backgroundColor: color))
             }
             .buttonStyle(.plain)
         }
