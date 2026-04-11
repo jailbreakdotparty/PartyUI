@@ -19,7 +19,7 @@ public struct LinkCreditIcon: View {
             image
                 .resizable()
                 .scaledToFit()
-                .frame(width: 50, height: 50)
+                .frame(width: 40, height: 40)
                 .background(Color(.systemGray6))
                 .clipShape(.capsule)
                 .glassEffect(.regular.interactive(), in: .capsule)
@@ -27,7 +27,7 @@ public struct LinkCreditIcon: View {
             image
                 .resizable()
                 .scaledToFit()
-                .frame(width: 50, height: 50)
+                .frame(width: 40, height: 40)
                 .background(Color(.systemGray6))
                 .clipShape(.rect(cornerRadius: 12))
                 .overlay {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// this is a modifier for good reason (PrimaryTextFieldButton).
 public struct PrimaryTextFieldStyle: ViewModifier {
     var isPlain: Bool
     var shape: AnyShape

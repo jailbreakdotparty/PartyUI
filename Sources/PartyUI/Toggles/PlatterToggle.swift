@@ -12,8 +12,8 @@ public enum ToggleInfoType: Codable {
 }
 
 public struct PlatterToggle: View {
+    var text: String
     var icon: String
-    var label: String
     var color: Color
     var infoType: ToggleInfoType
     var infoTitle: String
@@ -22,9 +22,9 @@ public struct PlatterToggle: View {
     var maxSupportedVersion: Double
     @Binding var isOn: Bool
     
-    public init(icon: String = "", label: String, color: Color = Color.accentColor, infoType: ToggleInfoType = .none, infoTitle: String = "Information", infoMessage: String = "", minSupportedVersion: Double = 0.0, maxSupportedVersion: Double = 100.0, isOn: Binding<Bool>) {
+    public init(text: String, icon: String = "", color: Color = Color.accentColor, infoType: ToggleInfoType = .none, infoTitle: String = "Information", infoMessage: String = "", minSupportedVersion: Double = 0.0, maxSupportedVersion: Double = 100.0, isOn: Binding<Bool>) {
+        self.text = text
         self.icon = icon
-        self.label = label
         self.color = color
         self.infoType = infoType
         self.infoTitle = infoTitle
@@ -42,8 +42,8 @@ public struct PlatterToggle: View {
                         Image(systemName: icon)
                             .frame(width: 20, alignment: .center)
                     }
-                    Text(label)
-                    Spacer()
+                    Text(text)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     HStack(spacing: 12) {
                         if infoType == .info || infoType == .warning {
                             Button(action: {

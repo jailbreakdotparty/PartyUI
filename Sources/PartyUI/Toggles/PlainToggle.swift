@@ -8,8 +8,8 @@
 import SwiftUI
 
 public struct PlainToggle: View {
+    var text: String
     var icon: String
-    var label: String
     var infoType: ToggleInfoType
     var infoTitle: String
     var infoMessage: String
@@ -17,9 +17,9 @@ public struct PlainToggle: View {
     var maxSupportedVersion: Double
     @Binding var isOn: Bool
     
-    public init(icon: String = "", label: String, infoType: ToggleInfoType = .none, infoTitle: String = "Information", infoMessage: String = "", minSupportedVersion: Double = 0.0, maxSupportedVersion: Double = 100.0, isOn: Binding<Bool>) {
+    public init(text: String, icon: String = "", infoType: ToggleInfoType = .none, infoTitle: String = "Information", infoMessage: String = "", minSupportedVersion: Double = 0.0, maxSupportedVersion: Double = 100.0, isOn: Binding<Bool>) {
+        self.text = text
         self.icon = icon
-        self.label = label
         self.infoType = infoType
         self.infoTitle = infoTitle
         self.infoMessage = infoMessage
@@ -36,7 +36,7 @@ public struct PlainToggle: View {
                         Image(systemName: icon)
                             .frame(width: 20, alignment: .center)
                     }
-                    Text(label)
+                    Text(text)
                     Spacer()
                     if infoType == .info || infoType == .warning {
                         Button(action: {

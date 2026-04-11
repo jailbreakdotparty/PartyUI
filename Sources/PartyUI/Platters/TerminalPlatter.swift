@@ -30,7 +30,7 @@ public struct TerminalPlatter: ViewModifier {
                     }
                     .clipShape(.rect(cornerRadius: isStandaloneView ? DesignStyle.platterCornerRadius : 20))
                 }
-                .glassEffect(.regular.interactive(), in: .rect(cornerRadius: isStandaloneView ? DesignStyle.platterCornerRadius : 24))
+                .glassEffect(.regular, in: .rect(cornerRadius: isStandaloneView ? DesignStyle.platterCornerRadius : 24))
         } else {
             content
                 .scrollIndicators(.hidden)

@@ -14,6 +14,9 @@ public enum DesignStyle {
     public static var platterCornerRadius: CGFloat {
         if #available(iOS 19.0, *) { return 26 } else { return 18 }
     }
+    public static var smallPlatterCornerRadius: CGFloat {
+        if #available(iOS 19.0, *) { return 16 } else { return 12 }
+    }
     public static var terminalCornerRadius: CGFloat {
         if #available(iOS 19.0, *) { return 24 } else { return 18 }
     }
