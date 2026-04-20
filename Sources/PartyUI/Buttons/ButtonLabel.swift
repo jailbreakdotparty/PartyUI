@@ -19,12 +19,12 @@ public struct ButtonLabel: View {
     }
     
     public var body: some View {
-        HStack(spacing: useImage ? 10 : nil) {
+        HStack {
             if useImage {
                 Image(icon)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 24, height: 22)
+                    .frame(width: 22, height: 22)
             } else {
                 Image(systemName: icon)
             }

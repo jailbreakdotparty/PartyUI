@@ -15,16 +15,24 @@ public struct FadeAnimation: ViewModifier {
         content
             .opacity(shouldAnimate ? 0.6 : 1.0)
             .animation(.spring(response: 0.4, dampingFraction: 0.6), value: shouldAnimate)
-            .gesture(
+            .onTapGesture {
+                withAnimation {
+                    shouldAnimate = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        withAnimation {
+                            shouldAnimate = false
+                        }
+                    }
+                }
+            }
+            .simultaneousGesture(
                 DragGesture(minimumDistance: 0)
-                    .onChanged { changed in
+                    .onChanged { _ in
                         shouldAnimate = true
                     }
-                    .onEnded { ended in
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            withAnimation {
-                                shouldAnimate = false
-                            }
+                    .onEnded { _ in
+                        withAnimation {
+                            shouldAnimate = false
                         }
                     }
             )

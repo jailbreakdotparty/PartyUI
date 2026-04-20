@@ -19,7 +19,7 @@ public struct HeaderLabel: View {
     public var body: some View {
         HStack {
             Image(systemName: icon)
-                .frame(width: DesignStyle.isSolariumUI ? 24 : nil, alignment: .center)
+                .frame(width: DesignStyle.isSolariumUI ? 24 : 22, alignment: .center)
             Text(text)
         }
     }

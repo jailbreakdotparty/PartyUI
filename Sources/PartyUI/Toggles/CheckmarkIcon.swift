@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct CheckmarkIcon: View {
+public struct BindedCheckmark: View {
     @Binding var isOn: Bool
     
     public init(isOn: Binding<Bool>) {
@@ -20,3 +20,15 @@ public struct CheckmarkIcon: View {
     }
 }
 
+public struct AnimatedCheckmark: View {
+    var isOn: Bool
+    
+    public init(isOn: Bool) {
+        self.isOn = isOn
+    }
+    
+    public var body: some View {
+        Image(systemName: isOn ? "checkmark.circle.fill" : "circle")
+            .modifier(UpdatedIconAnimation(isOn: isOn))
+    }
+}

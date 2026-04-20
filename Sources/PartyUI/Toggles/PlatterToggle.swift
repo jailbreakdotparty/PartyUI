@@ -52,13 +52,11 @@ public struct PlatterToggle: View {
                                 Image(systemName: infoType == .info ? "info.circle" : "exclamationmark.triangle")
                             }
                         }
-                        CheckmarkIcon(isOn: $isOn)
+                        BindedCheckmark(isOn: $isOn)
                     }
                 }
-                .foregroundStyle(color)
-                .modifier(ListTogglePlatter(backgroundColor: color))
             }
-            .buttonStyle(.plain)
+            .buttonStyle(PlatterButtonStyle())
         }
     }
 }
