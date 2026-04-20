@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FluidGradient
 
 public struct WelcomeSheetView<Context: View, Buttons: View>: View {
     var appName: String
@@ -43,5 +42,16 @@ public struct WelcomeSheetView<Context: View, Buttons: View>: View {
             }
         }
         .modifier(WelcomeSheetBackground())
+    }
+}
+
+// background for the welcome sheet
+public struct WelcomeSheetBackground: ViewModifier {
+    @Environment(\.colorScheme) var colorScheme
+    public init() {}
+    
+    public func body(content: Content) -> some View {
+        content
+            .background(colorScheme == .light ? .white : .black)
     }
 }

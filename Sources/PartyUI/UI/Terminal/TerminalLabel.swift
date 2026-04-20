@@ -8,13 +8,13 @@
 import SwiftUI
 
 public struct TerminalLabel: View {
-    var label: String
+    var text: String
     var icon: String
     var iconOpacity: CGFloat
     var context: String
     
-    public init(label: String, icon: String, iconOpacity: CGFloat = 1.0, context: String = "") {
-        self.label = label
+    public init(text: String, icon: String, iconOpacity: CGFloat = 1.0, context: String = "") {
+        self.text = text
         self.icon = icon
         self.iconOpacity = iconOpacity
         self.context = context
@@ -25,7 +25,7 @@ public struct TerminalLabel: View {
             HStack {
                 Image(systemName: icon)
                     .opacity(iconOpacity)
-                Text(label)
+                Text(text)
                     .fontWeight(.semibold)
                     .lineLimit(1)
             }

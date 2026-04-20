@@ -1,5 +1,5 @@
 //
-//  AcknowledgementsView.swift
+//  LicenseView.swift
 //  PartyUI
 //
 //  Created by lunginspector on 2/14/26.
@@ -7,31 +7,31 @@
 
 import SwiftUI
 
-public struct AcknowledgementsView: View {
-    @State var acknowledgementsData: [String : String] = [:]
+public struct LicenseView: View {
+    @State var licenseDict: [String : String] = [:]
     public init() {}
     
     public var body: some View {
         NavigationStack {
             List {
-                ForEach(acknowledgementsData.keys.sorted(), id: \.self) { acknowledgementName in
-                    if let acknowledgementText = acknowledgementsData[acknowledgementName] {
-                        let splitName = acknowledgementName.split(separator: "_")
-                        let licenseType = splitName.first ?? ""
-                        let creditedName = splitName.last ?? ""
-                        NavigationLink(creditedName, destination: AcknowledgementsContextView(name: "\(licenseType) License | \(creditedName)", licenseText: acknowledgementText))
+                ForEach(licenseDict.keys.sorted(), id: \.self) { name in
+                    if let text = licenseDict[name] {
+                        let splitName = name.split(separator: "_")
+                        let license = splitName.first ?? ""
+                        let creditor = splitName.last ?? ""
+                        NavigationLink(creditor, destination: LicenseDetailsView(name: "\(license) License | \(creditor)", licenseText: text))
                     }
                 }
             }
-            .navigationTitle("Acknowledgements")
+            .navigationTitle("Licenses")
         }
         .onAppear {
-            acknowledgementsData = loadAcknowledgements()
+            licenseDict = getLicenseDict()
         }
     }
 }
 
-public struct AcknowledgementsContextView: View {
+public struct LicenseDetailsView: View {
     var name: String
     var licenseText: String
     

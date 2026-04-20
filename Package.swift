@@ -13,17 +13,11 @@ let package = Package(
             targets: ["PartyUI"]
         ),
     ],
-    dependencies: [
-        .package(url: "https://github.com/Cindori/FluidGradient.git", .upToNextMajor(from: "1.0.0")),
-    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "PartyUI",
-            dependencies: [
-                .product(name: "FluidGradient", package: "FluidGradient")
-            ]
+            name: "PartyUI"
         ),
     ]
 )

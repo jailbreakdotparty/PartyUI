@@ -35,3 +35,11 @@ public enum AppInfo {
         return UIImage()
     }
 }
+
+// return doubleSystemVersion
+@MainActor public func doubleSystemVersion() -> Double {
+    let rawSystemVersion = UIDevice.current.systemVersion
+    let parsedSystemVersion = rawSystemVersion.split(separator: ".").prefix(2).joined(separator: ".")
+    return Double(parsedSystemVersion) ?? 0.0
+}
+

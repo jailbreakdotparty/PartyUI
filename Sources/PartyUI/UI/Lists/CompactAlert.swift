@@ -8,14 +8,14 @@
 import SwiftUI
 
 public struct CompactAlert: View {
-    var label: String
+    var title: String
     var icon: String
     var text: String
     var color: Color
     var useBackground: Bool
     
-    public init(label: String = "", icon: String = "", text: String, color: Color = Color.accentColor, useBackground: Bool = false) {
-        self.label = label
+    public init(title: String = "", icon: String = "", text: String, color: Color = Color.accentColor, useBackground: Bool = true) {
+        self.title = title
         self.icon = icon
         self.text = text
         self.color = color
@@ -32,12 +32,12 @@ public struct CompactAlert: View {
                     .foregroundStyle(color)
             }
             VStack(alignment: .leading) {
-                if !label.isEmpty {
-                    Text(label)
+                if !title.isEmpty {
+                    Text(title)
                         .fontWeight(.medium)
                 }
                 Text(text)
-                    .font(!label.isEmpty ? .subheadline : .body)
+                    .font(!title.isEmpty ? .subheadline : .body)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -56,12 +56,5 @@ struct CompactAlertBackground: ViewModifier {
                 .background(color.opacity(0.2), in: .rect(cornerRadius: DesignStyle.platterCornerRadius))
                 .modifier(FadeScaleAnimation())
         } else { content }
-    }
-}
-
-#Preview {
-    List {
-        CompactAlert(label: "Alert", icon: "exclamationmark.triangle", text: "This is the body of an alert with it's own background.", useBackground: true)
-        CompactAlert(label: "Alert", icon: "camera", text: "This is the body of an alert without it's own background.", useBackground: false)
     }
 }

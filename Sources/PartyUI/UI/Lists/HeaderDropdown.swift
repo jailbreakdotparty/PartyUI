@@ -48,7 +48,6 @@ public struct HeaderDropdown: View {
                         .frame(minWidth: 14)
                         .frame(height: 14)
                         .padding(6)
-                        // sweet jesus
                         .background(Color(.secondarySystemBackground), in: .capsule)
                 }
                 Image(systemName: isExpanded ? "chevron.down" : "chevron.right")

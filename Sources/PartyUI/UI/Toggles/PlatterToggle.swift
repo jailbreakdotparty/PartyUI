@@ -52,7 +52,8 @@ public struct PlatterToggle: View {
                                 Image(systemName: infoType == .info ? "info.circle" : "exclamationmark.triangle")
                             }
                         }
-                        BindedCheckmark(isOn: $isOn)
+                        Image(systemName: isOn ? "checkmark.circle.fill" : "circle")
+                            .modifier(UpdatedIconAnimation(isOn: isOn))
                     }
                 }
             }

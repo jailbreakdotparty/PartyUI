@@ -8,14 +8,14 @@
 import SwiftUI
 
 public struct WelcomeSheetRow: View {
-    var icon: String
     var title: String
-    var context: String
+    var icon: String
+    var text: String
     
-    public init(icon: String = "", title: String, context: String) {
-        self.icon = icon
+    public init(title: String, icon: String = "", text: String) {
         self.title = title
-        self.context = context
+        self.icon = icon
+        self.text = text
     }
     
     public var body: some View {
@@ -28,7 +28,7 @@ public struct WelcomeSheetRow: View {
                 Text(title)
                     .lineLimit(1)
                     .fontWeight(.medium)
-                Text(context)
+                Text(text)
                     .multilineTextAlignment(.leading)
             }
         }
