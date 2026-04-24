@@ -13,18 +13,21 @@ public struct FadeAnimation: ViewModifier {
     
     public func body(content: Content) -> some View {
         content
-            .opacity(shouldAnimate ? 0.6 : 1.0)
+            .opacity(shouldAnimate ? 0.8 : 1.0)
             .animation(.spring(response: 0.4, dampingFraction: 0.6), value: shouldAnimate)
-            .onTapGesture {
-                withAnimation {
-                    shouldAnimate = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            .simultaneousGesture(
+                TapGesture()
+                    .onEnded {
                         withAnimation {
-                            shouldAnimate = false
+                            shouldAnimate = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                withAnimation {
+                                    shouldAnimate = false
+                                }
+                            }
                         }
                     }
-                }
-            }
+            )
             .simultaneousGesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { _ in

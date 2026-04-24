@@ -19,6 +19,7 @@ public struct AppInfoCell: View {
                 Text("Version \(AppInfo.appVersion) (\(AppInfo.appBuild))")
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -38,7 +39,7 @@ public struct AppIcon: View {
                 .frame(width: 64, height: 64)
                 .background(Color(.systemGray6))
                 .clipShape(.rect(cornerRadius: 18))
-                .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 18))
+                .glassEffect(.regular, in: .rect(cornerRadius: 18))
         } else {
             image
                 .resizable()

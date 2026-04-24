@@ -25,7 +25,7 @@ public struct LinkCreditCell: View {
         Button(action: {
             if !url.isEmpty { openURL(URL(string: url)!) }
         }) {
-            HStack(spacing: DesignStyle.creditCellSpacing) {
+            HStack(spacing: spacing.creditCell) {
                 LinkCreditIcon(image: image)
                 VStack(alignment: .leading) {
                     Text(name)
@@ -64,7 +64,7 @@ public struct LinkCreditIcon: View {
                 .frame(width: 40, height: 40)
                 .background(Color(.systemGray6))
                 .clipShape(.capsule)
-                .glassEffect(.regular.interactive(), in: .capsule)
+                .glassEffect(.regular, in: .capsule)
         } else {
             image
                 .resizable()

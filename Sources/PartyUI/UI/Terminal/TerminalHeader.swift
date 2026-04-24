@@ -1,5 +1,5 @@
 //
-//  TerminalLabel.swift
+//  TerminalHeader.swift
 //  PartyUI
 //
 //  Created by lunginspector on 3/3/26.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct TerminalLabel: View {
+public struct TerminalHeader: View {
     var text: String
     var icon: String
     var iconOpacity: CGFloat
@@ -26,7 +26,7 @@ public struct TerminalLabel: View {
                 Image(systemName: icon)
                     .opacity(iconOpacity)
                 Text(text)
-                    .fontWeight(.semibold)
+                    .fontWeight(.medium)
                     .lineLimit(1)
             }
             if !context.isEmpty {

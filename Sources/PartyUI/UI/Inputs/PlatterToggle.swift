@@ -53,11 +53,11 @@ public struct PlatterToggle: View {
                             }
                         }
                         Image(systemName: isOn ? "checkmark.circle.fill" : "circle")
-                            .modifier(UpdatedIconAnimation(isOn: isOn))
+                            .animation(.iconUpdate, value: isOn)
                     }
                 }
             }
-            .buttonStyle(PlatterButtonStyle())
+            .buttonStyle(TranslucentButtonStyle())
         }
     }
 }

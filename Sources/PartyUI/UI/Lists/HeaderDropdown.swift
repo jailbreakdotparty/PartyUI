@@ -39,20 +39,22 @@ public struct HeaderDropdown: View {
             HStack {
                 if useThemedLabel {
                     ThemedHeaderLabel(text: text, icon: icon)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 } else {
                     HeaderLabel(text: text, icon: icon)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 if useItemCount {
-                    Spacer()
                     Text(String(itemCount))
                         .frame(minWidth: 14)
                         .frame(height: 14)
                         .padding(6)
                         .background(Color(.secondarySystemBackground), in: .capsule)
                 }
-                Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
+                Image(systemName: "chevron.down")
                     .frame(width: 24, height: 24, alignment: .center)
-                    .modifier(UpdatedIconAnimation(isOn: isExpanded))
+                    .rotationEffect(.degrees(isExpanded ? 0 : -90))
+                    .animation(.easeInOut(duration: 0.2), value: isExpanded)
             }
             .onAppear {
                 isExpanded = isExpandedStorage

@@ -7,35 +7,37 @@
 
 import SwiftUI
 
-public enum DesignStyle {
-    public static var defaultComponentRadius: CGFloat {
+public enum cornerRad {
+    public static var component: CGFloat {
         if #available(iOS 19.0, *) { return 18 } else { return 12 }
     }
-    public static var platterCornerRadius: CGFloat {
+    public static var platter: CGFloat {
         if #available(iOS 19.0, *) { return 26 } else { return 18 }
     }
-    public static var smallPlatterCornerRadius: CGFloat {
+    public static var sPlatter: CGFloat {
         if #available(iOS 19.0, *) { return 16 } else { return 12 }
     }
-    public static var terminalCornerRadius: CGFloat {
+    public static var terminal: CGFloat {
         if #available(iOS 19.0, *) { return 24 } else { return 18 }
     }
-    public static var creditCellSpacing: CGFloat {
+}
+
+public enum spacing {
+    public static var creditCell: CGFloat {
         if #available(iOS 19.0, *) { return 14 } else { return 16 }
     }
-    public static var welcomeSheetButtonShape: AnyShape {
-        if #available(iOS 19.0, *) { return AnyShape(.capsule) } else { return AnyShape(.rect(cornerRadius: 12)) }
-    }
-    public static var isSolariumUI: Bool {
-        if #available(iOS 19.0, *) { return true } else { return false }
-    }
-    public static var platterEdgeInsets: EdgeInsets {
-        return EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+}
+
+public enum width {
+    public static var headerIcon: CGFloat {
+        if #available(iOS 19.0, *) { return 24 } else { return 22 }
     }
 }
 
 public extension EdgeInsets {
-    static let dropdownRowInsets = EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 20)
-    static let itemRowInsets = EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
-    static let zeroInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+    static let sectionInsets = EdgeInsets(top: 6, leading: 15, bottom: 6, trailing: 15)
+}
+
+public extension Animation {
+    static let iconUpdate = Animation.spring(response: 0.3, dampingFraction: 1.5)
 }
