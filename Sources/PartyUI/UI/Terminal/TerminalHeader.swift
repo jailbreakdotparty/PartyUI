@@ -10,21 +10,28 @@ import SwiftUI
 public struct TerminalHeader: View {
     var text: String
     var icon: String
-    var iconOpacity: CGFloat
+    var color: Color
     var context: String
     
-    public init(text: String, icon: String, iconOpacity: CGFloat = 1.0, context: String = "") {
+    public init(text: String, icon: String, color: Color = Color(.label), context: String = "") {
         self.text = text
         self.icon = icon
-        self.iconOpacity = iconOpacity
+        self.color = color
         self.context = context
     }
     
     public var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image(systemName: icon)
-                    .opacity(iconOpacity)
+                if icon != "showMeProgressPlease" {
+                    Image(systemName: icon)
+                        .foregroundStyle(color)
+                        .frame(width: 22, height: 22, alignment: .center)
+                } else {
+                    ProgressView()
+                        .frame(width: 22, height: 22, alignment: .center)
+                        .offset(y: 0.5)
+                }
                 Text(text)
                     .fontWeight(.medium)
                     .lineLimit(1)
