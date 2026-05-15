@@ -19,6 +19,6 @@ public struct TerminalPlatter: ViewModifier {
             .scrollIndicators(.hidden)
             .frame(height: 250)
             .padding(.horizontal)
-            .background(Color(.quaternarySystemFill), in: .rect(cornerRadius: 22))
+            .background(Color(.quaternarySystemFill), in: .rect(cornerRadius: cornerRad.terminal))
     }
 }

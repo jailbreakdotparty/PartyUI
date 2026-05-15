@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct PrimaryButtonStyle: PrimitiveButtonStyle {
+public struct PrimaryButtonStyle: ButtonStyle {
     var color: Color = .accentColor
     var shape: Shape
     var useFullWidth: Bool
@@ -26,8 +26,6 @@ public struct PrimaryButtonStyle: PrimitiveButtonStyle {
             .frame(maxWidth: useFullWidth ? .infinity : nil)
             .padding()
             .background(isEnabled ? color : Color(.systemGray).opacity(0.2), in: AnyShape(shape))
-            .onTapGesture(perform: configuration.trigger)
-            .modifier(FadeAnimation())
     }
 }
 

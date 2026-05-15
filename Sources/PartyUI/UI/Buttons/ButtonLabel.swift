@@ -20,13 +20,19 @@ public struct ButtonLabel: View {
     
     public var body: some View {
         HStack {
-            if useImage {
-                Image(icon)
-                    .resizable()
-                    .scaledToFit()
+            if icon == "showMeProgressPlease" {
+                ProgressView()
                     .frame(width: 22, height: 22)
+                    .offset(y: -1)
             } else {
-                Image(systemName: icon)
+                if useImage {
+                    Image(icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 22, height: 22)
+                } else {
+                    Image(systemName: icon)
+                }
             }
             Text(text)
         }
