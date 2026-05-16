@@ -8,11 +8,11 @@
 import SwiftUI
 
 public struct TextFieldBackground: ViewModifier {
-    var shape: Shape
+    var shape: AnyShape
     var useFullWidth: Bool
     @Environment(\.isEnabled) private var isEnabled
     
-    public init(foregroundStyle: Color = .accentColor, shape: Shape = .rect(cornerRadius: cornerRad.component), useFullWidth: Bool = true) {
+    public init(foregroundStyle: Color = .accentColor, shape: AnyShape = AnyShape(.rect(cornerRadius: cornerRad.component)), useFullWidth: Bool = true) {
         self.shape = shape
         self.useFullWidth = useFullWidth
     }
