@@ -22,8 +22,8 @@ public struct ButtonLabel: View {
         HStack {
             if icon == "showMeProgressPlease" {
                 ProgressView()
-                    .frame(width: 22, height: 22)
-                    .offset(y: -1)
+                    .frame(width: 20, height: 20, alignment: .center)
+                    .offset(y: 0.5)
             } else {
                 if useImage {
                     Image(icon)
@@ -32,6 +32,7 @@ public struct ButtonLabel: View {
                         .frame(width: 22, height: 22)
                 } else {
                     Image(systemName: icon)
+                        .frame(width: 22, height: 22, alignment: .center)
                 }
             }
             Text(text)

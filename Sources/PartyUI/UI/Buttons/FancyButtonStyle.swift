@@ -35,8 +35,7 @@ public struct FancyButtonStyle: PrimitiveButtonStyle {
                 .frame(maxWidth: useFullWidth ? .infinity : nil)
                 .padding()
                 .background(isEnabled ? color.opacity(0.2) : Color(.systemGray).opacity(0.2), in: AnyShape(shape))
-                .background(.ultraThinMaterial.opacity(0.6), in: AnyShape(shape))
-                .brightness(0.1)
+                .background(.ultraThinMaterial, in: AnyShape(shape))
                 .onTapGesture(perform: configuration.trigger)
                 .modifier(FadeAnimation())
         }
