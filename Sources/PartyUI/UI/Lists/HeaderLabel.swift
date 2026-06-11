@@ -17,7 +17,7 @@ public struct HeaderLabel: View {
     }
     
     public var body: some View {
-        HStack {
+        HStack(spacing: 10) {
             Image(systemName: icon)
                 .frame(width: width.headerIcon, alignment: .center)
             Text(text)

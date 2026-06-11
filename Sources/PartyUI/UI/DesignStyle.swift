@@ -18,7 +18,7 @@ public enum cornerRad {
         if #available(iOS 19.0, *) { return 16 } else { return 12 }
     }
     public static var terminal: CGFloat {
-        if #available(iOS 19.0, *) { return 24 } else { return 18 }
+        if #available(iOS 19.0, *) { return 24 } else { return 14 }
     }
 }
 
