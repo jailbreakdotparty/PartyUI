@@ -8,23 +8,26 @@
 import SwiftUI
 
 public struct AppInfoCell: View {
-    public init() {}
+    let build: String
+    
+    public init(build: String = "") {
+        self.build = build
+    }
     
     public var body: some View {
         HStack(spacing: 14) {
-            AppIcon()
+            AppIconCell()
             VStack(alignment: .leading) {
                 Text(AppInfo.appName)
                     .font(.system(.title3, weight: .semibold))
-                Text("Version \(AppInfo.appVersion) (\(AppInfo.appBuild))")
+                Text("Version \(AppInfo.appVersion) (\(build))")
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
-// icon for AppInfoCell
-public struct AppIcon: View {
+public struct AppIconCell: View {
     var image: Image
     
     init(image: Image = Image(uiImage: AppInfo.appIcon ?? UIImage())) {
@@ -37,7 +40,7 @@ public struct AppIcon: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 64, height: 64)
-                .background(Color(.systemGray6))
+                .background(PlaceholderAppIconCell())
                 .clipShape(.rect(cornerRadius: 18))
                 .glassEffect(.regular, in: .rect(cornerRadius: 18))
         } else {
@@ -45,12 +48,21 @@ public struct AppIcon: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 64, height: 64)
-                .background(Color(.systemGray6))
+                .background(PlaceholderAppIconCell())
                 .clipShape(.rect(cornerRadius: 14))
                 .overlay {
                     RoundedRectangle(cornerRadius: 14)
-                        .stroke(Color.primary.opacity(0.2), lineWidth: 2)
+                        .stroke(Color.secondary.opacity(0.2), lineWidth: 1.5)
                 }
         }
+    }
+}
+
+struct PlaceholderAppIconCell: View {
+    var body: some View {
+        Image(systemName: "questionmark.square")
+            .foregroundStyle(.secondary)
+            .frame(width: 64, height: 64)
+            .background(Color(.systemGray5))
     }
 }

@@ -14,24 +14,6 @@ public enum cornerRad {
     public static var platter: CGFloat {
         if #available(iOS 19.0, *) { return 26 } else { return 18 }
     }
-    public static var sPlatter: CGFloat {
-        if #available(iOS 19.0, *) { return 16 } else { return 12 }
-    }
-    public static var terminal: CGFloat {
-        if #available(iOS 19.0, *) { return 24 } else { return 14 }
-    }
-}
-
-public enum spacing {
-    public static var creditCell: CGFloat {
-        if #available(iOS 19.0, *) { return 14 } else { return 16 }
-    }
-}
-
-public enum width {
-    public static var headerIcon: CGFloat {
-        if #available(iOS 19.0, *) { return 24 } else { return 22 }
-    }
 }
 
 public extension EdgeInsets {

@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+var creditCell: CGFloat {
+    if #available(iOS 19.0, *) { return 14 } else { return 16 }
+}
+
 public struct LinkCreditCell: View {
     var image: Image
     var name: String
@@ -25,7 +29,7 @@ public struct LinkCreditCell: View {
         Button(action: {
             if !url.isEmpty { openURL(URL(string: url)!) }
         }) {
-            HStack(spacing: spacing.creditCell) {
+            HStack(spacing: creditCell) {
                 LinkCreditIcon(image: image)
                 VStack(alignment: .leading) {
                     Text(name)

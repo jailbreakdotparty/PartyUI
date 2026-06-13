@@ -13,7 +13,6 @@ public struct HeaderDropdown: View {
     var text: String
     var icon: String
     @Binding var isExpanded: Bool
-    var useThemedLabel: Bool
     var useItemCount: Bool
     var itemCount: Int
     @AppStorage var isExpandedStorage: Bool
@@ -22,11 +21,10 @@ public struct HeaderDropdown: View {
     // i hate everyone who uses ios 16.
     @State private var previousItemCount: Int
     
-    public init(text: String, icon: String, isExpanded: Binding<Bool>, useThemedLabel: Bool = false, useItemCount: Bool = false, itemCount: Int = 1, previousItemCount: Int = 0) {
+    public init(text: String, icon: String, isExpanded: Binding<Bool>, useItemCount: Bool = false, itemCount: Int = 1, previousItemCount: Int = 0) {
         self.text = text
         self.icon = icon
         self._isExpanded = isExpanded
-        self.useThemedLabel = useThemedLabel
         self.useItemCount = useItemCount
         self.itemCount = itemCount
         // this is defintely scuffed, but it won't really matter to the average user as long as i don't change header labels or use a header label more than once.
@@ -37,13 +35,8 @@ public struct HeaderDropdown: View {
     public var body: some View {
         Button(action: { withAnimation { isExpanded.toggle() } }) {
             HStack {
-                if useThemedLabel {
-                    ThemedHeaderLabel(text: text, icon: icon)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                } else {
-                    HeaderLabel(text: text, icon: icon)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
+                HeaderLabel(text: text, icon: icon)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 if useItemCount {
                     Text(String(itemCount))
                         .frame(minWidth: 14)

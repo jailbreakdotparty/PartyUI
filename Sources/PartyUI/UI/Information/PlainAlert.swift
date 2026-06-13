@@ -13,7 +13,7 @@ public struct PlainAlert: View {
     var text: String
     var color: Color
     
-    public init(title: String = "", icon: String = "", text: String, color: Color = Color.accentColor) {
+    public init(title: String = "", icon: String = "", text: String, color: Color = Color(.label)) {
         self.title = title
         self.icon = icon
         self.text = text

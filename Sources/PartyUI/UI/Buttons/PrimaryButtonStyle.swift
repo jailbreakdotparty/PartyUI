@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct PrimaryButtonStyle: ButtonStyle {
-    var color: Color = .accentColor
+    var color: Color
     var shape: AnyShape
     var useFullWidth: Bool
     @Environment(\.isEnabled) private var isEnabled

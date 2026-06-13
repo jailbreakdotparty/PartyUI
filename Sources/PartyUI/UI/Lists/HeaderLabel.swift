@@ -17,10 +17,18 @@ public struct HeaderLabel: View {
     }
     
     public var body: some View {
-        HStack(spacing: 10) {
-            Image(systemName: icon)
-                .frame(width: width.headerIcon, alignment: .center)
-            Text(text)
+        if #available(iOS 19.0, *) {
+            HStack(spacing: 10) {
+                Image(systemName: icon)
+                    .frame(width: 22, alignment: .center)
+                Text(text)
+            }
+        } else {
+            HStack(spacing: 8) {
+                Image(systemName: icon)
+                    .frame(width: 18, alignment: .center)
+                Text(text)
+            }
         }
     }
 }

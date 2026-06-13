@@ -31,13 +31,13 @@ public struct PlainToggle: View {
     public var body: some View {
         if doubleSystemVersion() >= minSupportedVersion && doubleSystemVersion() <= maxSupportedVersion {
             Toggle(isOn: $isOn) {
-                HStack(spacing: 12) {
+                HStack(spacing: 10) {
                     if !icon.isEmpty {
                         Image(systemName: icon)
-                            .frame(width: 20, alignment: .center)
+                            .frame(width: 22, height: 22, alignment: .center)
                     }
                     Text(text)
-                    Spacer()
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     if infoType == .info || infoType == .warning {
                         Button(action: {
                             Alertinator.shared.alert(title: infoTitle, body: infoMessage)

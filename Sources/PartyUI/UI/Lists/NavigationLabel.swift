@@ -28,6 +28,7 @@ public struct NavigationLabel: View {
             }
             if footer.isEmpty {
                 Text(text)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             } else {
                 VStack(alignment: .leading) {
                     Text(text)
@@ -35,15 +36,23 @@ public struct NavigationLabel: View {
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             if showChevron {
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.tertiary)
-                    .imageScale(.small)
+                Chevron()
             }
         }
         .foregroundStyle(Color(.label))
+    }
+}
+
+public struct Chevron: View {
+    public init() {}
+    
+    public var body: some View {
+        Image(systemName: "chevron.right")
+            .fontWeight(.semibold)
+            .foregroundStyle(Color(uiColor: .tertiaryLabel))
+            .imageScale(.small)
     }
 }

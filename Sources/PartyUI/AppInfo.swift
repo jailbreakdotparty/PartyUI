@@ -16,7 +16,7 @@ public enum AppInfo {
         return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
     }
     public static var appBuild: String {
-        return Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "stop fucking with me apple"
+        return Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
     }
     public static var isDebug: Bool {
         #if DEBUG

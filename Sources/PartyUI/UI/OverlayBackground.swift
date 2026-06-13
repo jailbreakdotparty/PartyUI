@@ -20,7 +20,7 @@ public struct OverlayBackground: ViewModifier {
             .padding(.horizontal, 20)
             .padding(.top, 25)
             .padding(.bottom, keyboardShown || stickBottomPadding ? 20 : 0)
-            .background(VariableBlurView(maxBlurRadius: 10, direction: .blurredBottomClearTop).ignoresSafeArea())
+            .background(VariableBlurView(maxBlurRadius: 5, direction: .blurredBottomClearTop).ignoresSafeArea())
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
                 keyboardShown = true
             }
