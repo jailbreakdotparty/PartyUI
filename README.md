@@ -4,6 +4,8 @@
 > "If you can learn one thing from one project that you can carry with you into everything else you do, that project was a success."
 > *Abraham Lincoln*
 
+For documentation, check out the [wiki](https://github.com/jailbreakdotparty/PartyUI/wiki).
+
 ## Credits
 - [lunginspector](https://github.com/lunginspector) for all the actual work.
 - [nikstar's VariableBlur](https://github.com/nikstar/VariableBlur) used in PartyUI, licensed under the MIT License.
