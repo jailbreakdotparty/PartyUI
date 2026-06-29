@@ -11,6 +11,10 @@ public enum ToggleInfoType: Codable {
     case none, info, warning
 }
 
+let ptSpacing: CGFloat = {
+    if #available(iOS 19.0, *) { return 14 } else { return 12 }
+}()
+
 public struct PlatterToggle: View {
     var text: String
     var icon: String
@@ -18,11 +22,12 @@ public struct PlatterToggle: View {
     var infoType: ToggleInfoType
     var infoTitle: String
     var infoMessage: String
+    var ignoreVrs: Bool
     var minSupportedVersion: Double
     var maxSupportedVersion: Double
     @Binding var isOn: Bool
     
-    public init(text: String, icon: String = "", color: Color = Color.accentColor, infoType: ToggleInfoType = .none, infoTitle: String = "Information", infoMessage: String = "", minSupportedVersion: Double = 0.0, maxSupportedVersion: Double = 100.0, isOn: Binding<Bool>) {
+    public init(text: String, icon: String = "", color: Color = Color.accentColor, infoType: ToggleInfoType = .none, infoTitle: String = "Information", infoMessage: String = "", ignoreVrs: Bool = false, minSupportedVersion: Double = 0.0, maxSupportedVersion: Double = 100.0, isOn: Binding<Bool>) {
         self.text = text
         self.icon = icon
         self.color = color
@@ -30,14 +35,17 @@ public struct PlatterToggle: View {
         self.infoTitle = infoTitle
         self.infoMessage = infoMessage
         self._isOn = isOn
+        self.ignoreVrs = ignoreVrs
         self.minSupportedVersion = minSupportedVersion
         self.maxSupportedVersion = maxSupportedVersion
     }
     
     public var body: some View {
-        if doubleSystemVersion() >= minSupportedVersion && doubleSystemVersion() <= maxSupportedVersion {
-            Button(action: { isOn.toggle() }) {
-                HStack(spacing: 14) {
+        if ignoreVrs || (doubleSystemVersion() >= minSupportedVersion && doubleSystemVersion() <= maxSupportedVersion) {
+            Button {
+                isOn.toggle()
+            } label: {
+                HStack(spacing: ptSpacing) {
                     if !icon.isEmpty {
                         Image(systemName: icon)
                             .frame(width: 20, alignment: .center)
@@ -57,7 +65,7 @@ public struct PlatterToggle: View {
                     }
                 }
             }
-            .buttonStyle(TranslucentButtonStyle())
+            .buttonStyle(TranslucentButtonStyle(color: color))
         }
     }
 }
