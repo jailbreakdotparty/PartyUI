@@ -26,6 +26,7 @@ public struct FancyButtonStyle: PrimitiveButtonStyle {
                 .foregroundStyle(isEnabled ? color : .gray)
                 .frame(maxWidth: useFullWidth ? .infinity : nil)
                 .padding()
+                .contentShape(shape)
                 .glassEffect(.regular.interactive().tint(isEnabled ? color.opacity(0.2) : Color(.systemGray).opacity(0.2)), in: AnyShape(shape))
                 .onTapGesture(perform: configuration.trigger)
         } else {
@@ -34,12 +35,11 @@ public struct FancyButtonStyle: PrimitiveButtonStyle {
                 .foregroundStyle(isEnabled ? color : .gray)
                 .frame(maxWidth: useFullWidth ? .infinity : nil)
                 .padding()
+                .contentShape(shape)
                 .background(isEnabled ? color.opacity(0.2) : Color(.systemGray).opacity(0.2), in: AnyShape(shape))
                 .background(.ultraThinMaterial, in: AnyShape(shape))
                 .onTapGesture(perform: configuration.trigger)
                 .modifier(FadeAnimation())
         }
     }
-    
 }
-
