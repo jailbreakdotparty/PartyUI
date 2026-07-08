@@ -20,6 +20,7 @@ public struct GetButtonStyle: ButtonStyle {
             .font(.footnote)
             .fontWeight(.medium)
             .padding(8)
+            .contentShape(shape)
             .background(isEnabled ? color.opacity(0.2) : Color(.systemGray).opacity(0.2), in: .capsule)
     }
 }

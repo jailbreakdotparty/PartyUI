@@ -25,6 +25,7 @@ public struct TranslucentButtonStyle: ButtonStyle {
             .foregroundStyle(isEnabled ? color : .gray)
             .frame(maxWidth: useFullWidth ? .infinity : nil)
             .padding()
+            .contentShape(shape)
             .background(isEnabled ? color.opacity(0.2) : Color(.systemGray).opacity(0.2), in: AnyShape(shape))
     }
 }

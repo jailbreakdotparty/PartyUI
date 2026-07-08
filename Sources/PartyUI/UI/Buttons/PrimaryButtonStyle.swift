@@ -25,6 +25,7 @@ public struct PrimaryButtonStyle: ButtonStyle {
             .foregroundStyle(isEnabled ? Color(.label) : .gray)
             .frame(maxWidth: useFullWidth ? .infinity : nil)
             .padding()
+            .contentShape(shape)
             .background(isEnabled ? color : Color(.systemGray).opacity(0.2), in: AnyShape(shape))
     }
 }
