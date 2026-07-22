@@ -1,5 +1,5 @@
 //
-//  SheetLabel.swift
+//  CloseSheetLabel.swift
 //  PartyUI
 //
 //  Created by lunginspector on 6/29/26.
@@ -16,7 +16,8 @@ public struct CloseSheetLabel: View {
     
     public var body: some View {
         if #available(iOS 19.0, *) {
-            Image(systemName: "xmark")
+            Label(label, systemImage: "xmark")
+                .labelStyle(.iconOnly)
         } else {
             Text(label)
         }
