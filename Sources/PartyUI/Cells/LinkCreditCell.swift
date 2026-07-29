@@ -12,13 +12,13 @@ var creditCell: CGFloat {
 }
 
 public struct LinkCreditCell: View {
-    var image: Image
+    var image: Image?
     var name: String
     var description: String
     var url: String
     @Environment(\.openURL) var openURL
     
-    public init(image: Image, name: String, description: String, url: String = "") {
+    public init(image: Image? = nil, name: String, description: String, url: String = "") {
         self.image = image
         self.name = name
         self.description = description
@@ -30,7 +30,9 @@ public struct LinkCreditCell: View {
             if !url.isEmpty { openURL(URL(string: url)!) }
         }) {
             HStack(spacing: creditCell) {
-                LinkCreditIcon(image: image)
+                if let image = image {
+                    LinkCreditIcon(image: image)
+                }
                 VStack(alignment: .leading) {
                     Text(name)
                         .fontWeight(.semibold)
@@ -42,7 +44,7 @@ public struct LinkCreditCell: View {
                 if !url.isEmpty {
                     Spacer()
                     Image(systemName: "chevron.right")
-                        .fontWeight(.semibold)
+                        .font(.body.weight(.semibold))
                         .foregroundStyle(.tertiary)
                         .imageScale(.small)
                 }

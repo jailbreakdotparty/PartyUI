@@ -11,13 +11,11 @@ public struct TerminalHeader: View {
     var text: String
     var icon: String
     var color: Color
-    var context: String
     
-    public init(text: String, icon: String, color: Color = Color(.label), context: String = "") {
+    public init(text: String, icon: String, color: Color = Color(.label)) {
         self.text = text
         self.icon = icon
         self.color = color
-        self.context = context
     }
     
     public var body: some View {
@@ -35,12 +33,6 @@ public struct TerminalHeader: View {
                 Text(text)
                     .fontWeight(.medium)
                     .lineLimit(1)
-            }
-            if !context.isEmpty {
-                Text(context)
-                    .foregroundStyle(.secondary)
-                    .font(.subheadline)
-                    .lineLimit(2)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

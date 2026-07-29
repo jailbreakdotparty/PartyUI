@@ -19,7 +19,7 @@ public struct AppInfoCell: View {
             AppIconCell()
             VStack(alignment: .leading) {
                 Text(AppInfo.appName)
-                    .font(.system(.title3, weight: .semibold))
+                    .font(.title3.weight(.semibold))
                 Text("Version \(AppInfo.appVersion) (\(build))")
             }
         }

@@ -18,8 +18,9 @@ public struct GetButtonStyle: ButtonStyle {
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.footnote)
-            .fontWeight(.medium)
+            .font(.body.weight(.medium))
             .padding(8)
+            .foregroundStyle(color)
             .background(isEnabled ? color.opacity(0.2) : Color(.systemGray).opacity(0.2), in: .capsule)
     }
 }

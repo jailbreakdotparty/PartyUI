@@ -46,13 +46,18 @@ public struct NavigationLabel: View {
     }
 }
 
+var chevronSpacing: CGFloat {
+    if #available(iOS 19.0, *) { return 1 } else { return 0 }
+}
+
 public struct Chevron: View {
     public init() {}
     
     public var body: some View {
         Image(systemName: "chevron.right")
-            .fontWeight(.semibold)
+            .font(.body.weight(.semibold))
             .foregroundStyle(Color(uiColor: .tertiaryLabel))
             .imageScale(.small)
+            .padding(.trailing, chevronSpacing)
     }
 }

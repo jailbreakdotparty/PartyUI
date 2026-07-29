@@ -37,6 +37,6 @@ public struct ButtonLabel: View {
             }
             Text(text)
         }
-        .fontWeight(.medium)
+        .font(.body.weight(.medium))
     }
 }

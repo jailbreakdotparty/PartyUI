@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-// Here's the core functionality of this system: In the parent view, the user will pass a binded bool to set a true/false state for whether or not the list is expanded or not. This state will be stored and given it's own custom name based on the label (text).
-// Also being passed is an itemCount interger. This is, by default, set to one. If, on the change of itemCount, it goes from 1 to 0, the isExpanded boolean should be set to false and the list should collapse. If, on the change of item count, it goes from 0 to 1, the isExpanded boolean should be set to true and the list should expand.
+// here's the core functionality of this system: in the parent view, the user will pass a binded bool to set a true/false state for whether or not the list is expanded or not. this state will be stored and given it's own custom name based on the label (text).
+// also being passed is an itemCount interger. this is, by default, set to one. if, on the change of itemCount, it goes from 1 to 0, the isExpanded boolean should be set to false and the list should collapse. if, on the change of item count, it goes from 0 to 1, the isExpanded boolean should be set to true and the list should expand.
+// if anyone has a better solution, please let me know. this sucks.
 public struct HeaderDropdown: View {
     var text: String
     var icon: String

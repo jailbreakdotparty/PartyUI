@@ -13,11 +13,11 @@ public struct InfoBadge: View {
     var textColor: Color
     var color: Color
     
-    public init(text: String, icon: String, textColor: Color = .secondary, color: Color = Color(.tertiarySystemBackground)) {
+    public init(text: String, icon: String, textColor: Color = .secondary, color: Color = Color(.quaternarySystemFill)) {
         self.text = text
         self.icon = icon
-        self.textColor = color == Color(.tertiarySystemBackground) ? textColor : color
-        self.color = color == Color(.tertiarySystemBackground) ? color : color.opacity(0.2)
+        self.textColor = color == Color(.quaternarySystemFill) ? textColor : color
+        self.color = color == Color(.quaternarySystemFill) ? color : color.opacity(0.2)
     }
     
     public var body: some View {

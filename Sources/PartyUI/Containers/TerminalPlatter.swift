@@ -16,7 +16,6 @@ public struct TerminalPlatter: ViewModifier {
     
     public func body(content: Content) -> some View {
         content
-            .scrollIndicators(.hidden)
             .frame(height: 250)
             .padding(.horizontal)
             .background(Color(.quaternarySystemFill), in: .rect(cornerRadius: terminalRad))
