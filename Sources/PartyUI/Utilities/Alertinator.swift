@@ -39,11 +39,16 @@ public class Alertinator {
         }
     }
     
-    public func prompt(title: String, placeholder: String, showCancel: Bool = true, completion: @escaping (String?) async -> Void) {
+    public func prompt(title: String, placeholder: String = "", text: String = "", showCancel: Bool = true, completion: @escaping (String?) async -> Void) {
         Task { @MainActor in
             alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
             alertController?.addTextField { field in
-                field.placeholder = placeholder
+                if !placeholder.isEmpty {
+                    field.placeholder = placeholder
+                }
+                if !text.isEmpty {
+                    field.text = text
+                }
             }
             if showCancel {
                 alertController?.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
